@@ -59,3 +59,38 @@ echo "Tail won by $D"
 else
 echo "It's Tie"
 fi
+
+# ensure if it's tie continue till the difference become 2
+
+H=0
+T=0
+while [ $(( $H - $T )) -ne 1 ]
+do
+R=$(( $RANDOM % 2 ))
+if [ $R -eq 0 ]
+then
+H=$(( $H + 1 ))
+else
+T=$(( $T + 1 ))
+fi
+done
+echo "H=$H T=$T"
+echo "H - T = $H - $T = $(( $H -$T )) this condition may lead to tie"
+echo "Again flip the coin to avoid the condition of tie and make one win"
+while [ $(( $H - $T )) -ne 2 ]
+do
+R=$(( $RANDOM % 2 ))
+if [ $R -eq 0 ]
+then
+H=$(( $H + 1 ))
+else
+T=$(( $T + 1 ))
+fi
+done
+echo "H=$H T=$T"
+if [ $H > $T ]
+then
+echo "Head won"
+else
+echo "Tail won"
+fi
